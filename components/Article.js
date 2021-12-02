@@ -114,3 +114,56 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+// Article Constructor Function
+function addArticle(title, date, text1, text2, text3){
+  this.title = title,
+  this.date = date,
+  this.firstParapgraph = text1,
+  this.secondParagraph = text2,
+  this.thirdParagraph = text3
+}
+// addArticle('', '', ``, ``, ``)
+let myArticle = new addArticle('How to secure the bag in Web Dev', 'December 1st, 2021', `Pommy ipsum scrubber odds and sods wedding tackle balderdash it's the bees knees, real ale chin up see a man about a dog a right corker barmy, bovver boots mush bloody shambles alright duck. You mean it ain't me noggin' bobby chuffed gob a bit wonky porky-pies munta and a right toff treacle, made a pig's ear of it copped a bollocking shepherd's pie two weeks on't trot 10 pence mix it's cracking flags bog off. Ey up chuck ey up duck had a barney with the inlaws mush fish and chips Doctor Who roast beef, middle class gosh bog roll bloody shambles cheesed off scouser, it's me peepers bow ties are cool conked him one on the nose drizzle doolally.`, `Pommy ipsum and thus bow ties are cool 10 pence mix old chap, bull dog shortbread bits 'n bobs it's the bees knees dignified, bog off wedding tackle balderdash gob sausage roll. Bog roll every fortnight yorkshire pudding baffled upper class, smeg slappers curtain twitching Prince Charles, stop arsing around by 'eck love what a load of guff. Chippy slap-head challenge you to a duel any road, best be off Time Lord slappers old chap bangers and mash proper, naff off farewell ask your mother if spam fritters have a kip teacakes. Nutter god save the queen cheerio bit of a Jack the lad tip-top, pie-eyed blimey and thus.`, `Pommy ipsum sod's law bloody mary unhand me sir some mothers do 'ave 'em numbskull a right corker therewith, Union Jack bottled it how's your father muck about Shakespeare absolute twoddle Prince Charles every fortnight, Union Jack a bit miffed absobloodylootely chin up a cracking scouser the chippy. Argy-bargy gravy cheese and chips blummin' conked him one on the nose black cab ask your mother if golly ey up chuck, throw a spanner in the works nowt driving a mini in the jacksy nuthouse. Bits 'n bobs quid what a doddle cheerio off the hook down the local quid squiffy, blighty gobsmacked every fortnight some mothers do 'ave 'em Elementary my dear Watson.`)
+data.push(myArticle);
+
+
+// Article Maker
+function articleMaker(article) {
+  const articleDiv = document.createElement('div');
+  const articleH2 = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articleP2 = document.createElement('p');
+  const articleP3 = document.createElement('p');
+  const articleP4 = document.createElement('p');
+  const articleSpan = document.createElement('span');
+  articleDiv.appendChild(articleH2);
+  articleDiv.appendChild(articleDate);
+  articleDiv.appendChild(articleP2);
+  articleDiv.appendChild(articleP3);
+  articleDiv.appendChild(articleP4);
+  articleDiv.appendChild(articleSpan);
+  articleDiv.classList.add('article','article-open');
+  articleP4.classList.add('date');
+  articleSpan.classList.add('expandButton')
+  articleH2.textContent = article.title;
+  articleDate.textContent = article.date;
+  articleSpan.textContent = '+';
+  articleP2.textContent = article.firstParagraph;
+  articleP3.textContent = article.secondParagraph;
+  articleP4.textContent = article.thirdParagraph;
+  //Toggled Event Listener
+  articleSpan.addEventListener('click', function(){
+    articleDiv.classList.toggle('article-open');
+  })
+
+  return articleDiv;
+}
+
+// console.log(articleMaker(data));
+
+//Creation Loop
+data.forEach(article => {
+  const newArticle = articleMaker(article);
+  document.querySelector('.articles').appendChild(newArticle);
+});
